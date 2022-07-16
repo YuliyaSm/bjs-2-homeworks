@@ -22,8 +22,34 @@ function solveEquation(a, b, c) {
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
   let totalAmount;
+  let wrongParameter;
+   if (isNaN(parseFloat(percent)) && ! isFinite(percent)){
+    return "Параметр \"Процентная ставка\" содержит неправильное значение \"" + percent + "\"";
+   }
+   if (isNaN(parseFloat(contribution)) && ! isFinite(contribution)){
+    return "Параметр \"Начальный взнос\" содержит неправильное значение \"" + contribution + "\"";
+  }
+  if (isNaN(parseFloat(amount)) && ! isFinite(amount)){
+    return "Параметр \"Общая стоимость\" содержит неправильное значение \"" + amount + "\"";
+  }
+  let months;
+  let today = new Date(Date.now());
+  months = (date.getFullYear() - today.getFullYear()) * 12;
+  months -= today.getMonth() + 1;
+  months += date.getMonth();
+  if (date.getDate() >= today.getDate()){
+    months ++
+  }
+  if (months < 0){
+    return "Параметр \"Дата\" не может быть ранее сегодняшнего дня ";
+  }
 
-  // код для задачи №2 писать здесь
+  let body = amount - contribution;
+  let monthlyRate = percent/100/12;
+  let monthlyPayment = body*(monthlyRate+(monthlyRate/(((1+monthlyRate)**months)-1)));
+  totalAmount = (monthlyPayment*months).toFixed(2);
 
-  return totalAmount;
+  console.log(+totalAmount);
+  return +totalAmount;
 }
+
