@@ -21,19 +21,20 @@ function getArrayParams(arr) {
 
 // Задание 2
 function worker(arr) {
-  let sum;
-
-  // Ваш код
-
+  let sum= arr.reduce(function(previousValue, currentValue) {
+    return previousValue + currentValue; 
+});
   return sum;
 }
 
 function makeWork(arrOfArr, func) {
-  let max;
-
-  // Ваш кода
-  // for ...
-  
+  let max = -Infinity;
+  for (let i = 0; i < arrOfArr.length; i++) {
+    let sum = func(arrOfArr[i]);
+    if (sum > max){
+      max = sum;
+    } 
+  }
   return max;
 }
 
