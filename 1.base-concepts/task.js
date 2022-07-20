@@ -30,7 +30,7 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     return "Параметр \"Начальный взнос\" содержит неправильное значение \"" + contribution + "\"";
   }
   if (isNaN(parseFloat(amount)) && ! isFinite(amount)){
-    return "Параметр \"Общая стоимость\" содержит неправильное значение \"" + amount + "\"";
+    return "Параметр \"Общая стоимость\" содержит неправильное значение \"q" + amount + "\"";
   }
   let months;
   let today = new Date(Date.now());
